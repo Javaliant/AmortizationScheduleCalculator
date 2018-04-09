@@ -12,7 +12,7 @@ function calculateAmortizationSchedule(balance, years, APR) {
     let totalInterest = 0
     let period = years * 12
     let monthlyRate = APR / 100 / 12
-    let monthlyPayment = monthlyRate / (1 - (1 + monthlyRate) ** -period) * balance
+    let monthlyPayment = balance * monthlyRate / (1 - (1 + monthlyRate) ** -period)
     let schedule = []
 
     for (let i = 1; i <= period; i++) {
