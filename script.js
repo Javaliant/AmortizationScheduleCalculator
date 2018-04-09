@@ -9,7 +9,7 @@ class Payment {
     }
 }
 
-function calculateAmortizationSchedule(price, balance, years, APR, rounded = 25) {
+function calculateAmortizationSchedule(price, balance, years, APR, rounded = 1) {
     let totalInterest = 0
     let period = years * 12
     let monthlyRate = APR / 100 / 12
