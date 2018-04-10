@@ -9,7 +9,7 @@ class Payment {
     }
 }
 
-function calculateAmortizationSchedule(price, balance, years, APR, rounded = 1) {
+function calculateAmortizationSchedule(price, balance, years, APR, rounded = -1) {
     let totalInterest = 0
     let period = years * 12
     let monthlyRate = APR / 100 / 12
@@ -19,8 +19,8 @@ function calculateAmortizationSchedule(price, balance, years, APR, rounded = 1) 
     for (let i = 1; balance > 0.01 && i <= period; i++) {
         let interestPayment = balance * monthlyRate
         totalInterest += interestPayment
-        let minimumPrincipalPayment = Math.min(monthlyPayment, balance) - interestPayment
-        let principalPayment = Math.min(balance, rounded * Math.ceil(minimumPrincipalPayment / rounded))
+        let minimumPrincipalPayment = Math.min(monthlyPayment  - interestPayment, balance)
+        let principalPayment = rounded == -1 ? minimumPrincipalPayment : Math.min(balance, rounded * Math.ceil(minimumPrincipalPayment / rounded))
         balance -= principalPayment
         let payment = interestPayment + principalPayment
         schedule.push(new Payment(payment, principalPayment, interestPayment, totalInterest, balance, 1 - balance / price))
