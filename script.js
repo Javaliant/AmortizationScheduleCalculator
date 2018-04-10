@@ -1,15 +1,15 @@
 class Payment {
     constructor(payment, principal, interest, totalInterest, balance, equity) {
-        this.payment = `$${payment.toFixed(2)}`
-        this.principal = `$${principal.toFixed(2)}`
-        this.interest = `$${interest.toFixed(2)}`
-        this.totalInterest = `$${totalInterest.toFixed(2)}`
-        this.balance = `$${balance.toFixed(2)}`
-        this.equity = (equity * 100).toFixed(2)
+        this.payment = '$' + payment.toFixed(2)
+        this.principal = '$' + principal.toFixed(2)
+        this.interest = '$' + interest.toFixed(2)
+        this.totalInterest = '$' + totalInterest.toFixed(2)
+        this.balance = '$' + balance.toFixed(2)
+        this.equity = (equity * 100).toFixed(2) + '%'
     }
 }
 
-function calculateAmortizationSchedule(price, balance, years, APR, rounded = 1) {
+function calculateAmortizationSchedule(price, balance, years, APR, rounded = 25) {
     let totalInterest = 0
     let period = years * 12
     let monthlyRate = APR / 100 / 12
